@@ -1,0 +1,33 @@
+﻿<Window x:Class="TDM.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TDM.Views"
+        mc:Ignorable="d"
+        Title="ShellView" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel  Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="NewFile">New</Button>
+            <Button x:Name="RemoveFile">Remove</Button>
+            <Button x:Name="RenameFile">Rename</Button>
+            <Button x:Name="OpenFile">Open</Button>
+            <Button x:Name="BackUp">Back</Button>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <ListBox x:Name="Files">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
+</Window>
