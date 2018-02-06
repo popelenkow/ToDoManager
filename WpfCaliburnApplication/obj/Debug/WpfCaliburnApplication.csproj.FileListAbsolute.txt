@@ -64,3 +64,5 @@ C:\Users\VladlenMacro\YandexDisk\Prog\ToDoManager\WpfCaliburnApplication\obj\Deb
 C:\Users\VladlenMacro\YandexDisk\Prog\ToDoManager\WpfCaliburnApplication\obj\Debug\WpfCaliburnApplication.csproj.CoreCompileInputs.cache
 C:\Users\VladlenMacro\YandexDisk\Prog\ToDoManager\WpfCaliburnApplication\obj\Debug\WpfCaliburnApplication.exe
 C:\Users\VladlenMacro\YandexDisk\Prog\ToDoManager\WpfCaliburnApplication\obj\Debug\WpfCaliburnApplication.pdb
+C:\Users\VladlenMacro\YandexDisk\Prog\ToDoManager\WpfCaliburnApplication\obj\Debug\Views\FileView.g.cs
+C:\Users\VladlenMacro\YandexDisk\Prog\ToDoManager\WpfCaliburnApplication\obj\Debug\Views\FileView.baml

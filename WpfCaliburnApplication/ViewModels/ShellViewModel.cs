@@ -11,9 +11,9 @@ namespace TDM.ViewModels
 {
     class ShellViewModel : Screen
     {
-        private ObservableCollection<string> files;
+        private ObservableCollection<FileViewModel> files;
 
-        public ObservableCollection<string> Files 
+        public ObservableCollection<FileViewModel> Files 
         {
             get { return files; }
             set
@@ -24,26 +24,35 @@ namespace TDM.ViewModels
 
         }
 
-        private string selectedFile;
+        private FileViewModel selectedFile;
 
-        public string SelectedFile
+        public FileViewModel SelectedFile
         {
             get { return selectedFile; }
             set
             {
+                if (selectedFile != null)
+                {
+                    selectedFile.FileIsSelected = false;
+                }
+                if (value != null)
+                {
+                    value.FileIsSelected = true;
+                }
                 selectedFile = value;
                 NotifyOfPropertyChange(() => SelectedFile);
                 NotifyOfPropertyChange(() => CanRemoveFile);
+                NotifyOfPropertyChange(() => CanRenameFile);
             }
         }
 
         public ShellViewModel()
         {
-            Files = new BindableCollection<string>
+            Files = new BindableCollection<FileViewModel>
                 {
-                    "Matteo",
-                    "Mario",
-                    "John"
+                    new FileViewModel{ Name = "Matteo" },
+                     new FileViewModel{ Name = "Mario" },
+                     new FileViewModel{ Name = "John" }
                 };
         }
         public string My { get; set; } = "fdf";
@@ -56,7 +65,9 @@ namespace TDM.ViewModels
 
         public void NewFile()
         {
-            Files.Add("New file");
+            var file = new FileViewModel { Name = "New file" };
+            Files.Add(file);
+            SelectedFile = file;
         }
         public bool CanRemoveFile
         {
@@ -64,7 +75,35 @@ namespace TDM.ViewModels
         }
         public void RemoveFile()
         {
-            Files.Remove(selectedFile);
+            FileViewModel newSelectedFile = null;
+            if (Files.Count > 1)
+            {
+                for (int i = 0; i < Files.Count; i++)
+                {
+                    if (Files[i] == SelectedFile)
+                    {
+
+                        if (i == Files.Count - 1)
+                        {
+                            newSelectedFile = Files[i - 1];
+                        }
+                        else
+                        {
+                            newSelectedFile = Files[i + 1];
+                        }
+                    }
+                }
+            }
+            Files.Remove(SelectedFile);
+            SelectedFile = newSelectedFile;
+        }
+        public bool CanRenameFile
+        {
+            get { return SelectedFile != null; }
+        }
+        public void RenameFile()
+        {
+            SelectedFile.EditorIsFocused = true;
         }
     }
 }
